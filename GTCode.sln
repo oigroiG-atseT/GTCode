@@ -16,9 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTCode.Utils", "GTCode.Util
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tester.NUnit", "Tester.NUnit\Tester.NUnit.csproj", "{ECF70FFA-130E-45D3-9882-797CC3F51DD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTCode.Extensions", "GTCode.Extensions\GTCode.Extensions.csproj", "{A1E98332-1108-4693-9685-7E90CFFF9EB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTCode.Extensions", "GTCode.Extensions\GTCode.Extensions.csproj", "{A1E98332-1108-4693-9685-7E90CFFF9EB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTCode.Services", "GTCode.Services\GTCode.Services.csproj", "{E0A4F9C8-8B5F-4193-8281-CD53F25D8758}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTCode.Services", "GTCode.Services\GTCode.Services.csproj", "{E0A4F9C8-8B5F-4193-8281-CD53F25D8758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

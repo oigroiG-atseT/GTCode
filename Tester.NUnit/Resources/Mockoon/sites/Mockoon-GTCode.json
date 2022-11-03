@@ -1,0 +1,477 @@
+{
+  "uuid": "d36af324-0b51-4110-b539-16aa11d9fdaa",
+  "lastMigration": 22,
+  "name": "GTCode",
+  "endpointPrefix": "gt-code",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "127.0.0.1",
+  "routes": [
+    {
+      "uuid": "1d892760-cdf9-4f43-a2c3-0d4e9dc0bbf6",
+      "documentation": "ListWrapper con nomi casuali",
+      "method": "get",
+      "endpoint": "get-people",
+      "responses": [
+        {
+          "uuid": "ded10092-9831-461f-8302-47e27d896111",
+          "body": "{\n  \"success\": \"true\",\n  \"data\": [\n    {{# repeat (queryParam 'total' '10') }}\n        \"{{ faker 'name.firstName' }}\",\n    {{/ repeat }}\n  ],\n  \"totalCount\": \"{{queryParam 'total' '10'}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Creates 10 random users, or the amount specified in the 'total' query param",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "b30769e2-e270-4857-86e1-f2ecbb36a4da",
+      "documentation": "Ritorna un file di testo",
+      "method": "get",
+      "endpoint": "get-file",
+      "responses": [
+        {
+          "uuid": "6957d476-2db5-4948-8b5f-6a7b988e7c08",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "filePath": "C:\\Users\\giorgio.testa\\Desktop\\Mockoon\\sites\\GenericAPI\\GenericAPI.File.txt",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "82a3db54-3b1d-4d11-90c0-43450f5740f5",
+      "documentation": "Ritorna esattamente ciò che è sato ricevuto",
+      "method": "post",
+      "endpoint": "post-mirror",
+      "responses": [
+        {
+          "uuid": "187bacbc-5113-443f-9f58-1cbba78c8a97",
+          "body": "{{body}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "7da72230-4bd4-4002-9adf-5648d9e5506a",
+      "documentation": "Ritorna esattamente ciò che è stato ricevuto",
+      "method": "put",
+      "endpoint": "put-mirror",
+      "responses": [
+        {
+          "uuid": "f2c839ec-1da0-4228-85ed-f24c08ba13ec",
+          "body": "{{body}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "bef51753-3f6e-44e8-be5e-4d4991f36b31",
+      "documentation": "Dato una richiesta put con le seugenti chiavi: 1 ; 2 ; 3 ritorna il valore contenuto in 1",
+      "method": "put",
+      "endpoint": "put-parameters-mirror",
+      "responses": [
+        {
+          "uuid": "d6118d3c-523a-417f-a8d5-a6058cf5e4e6",
+          "body": "{\n  \"success\":\"true\",\n  \"data\":\"{{body '1'}}\",\n  \"message\": \"ok\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "46b59051-1dfa-47f1-8846-409d828f238e",
+      "documentation": "ListWrapper con nomi casuali",
+      "method": "get",
+      "endpoint": "basic-auth/get-people",
+      "responses": [
+        {
+          "uuid": "4eef7a40-3c8d-4a5f-b915-df64911642b5",
+          "body": "{\n  \"success\": \"true\",\n  \"data\": [\n    {{# repeat (queryParam 'total' '10') }}\n        \"{{ faker 'name.firstName' }}\",\n    {{/ repeat }}\n  ],\n  \"totalCount\": \"{{queryParam 'total' '10'}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Creates 10 random users, or the amount specified in the 'total' query param",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "fff9ba40-1183-485f-97b0-1592297ac4f7",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "3fb2bee9-4aa5-450f-9fc3-544c00d8e6b7",
+      "documentation": "Ritorna un file di testo",
+      "method": "get",
+      "endpoint": "basic-auth/get-file",
+      "responses": [
+        {
+          "uuid": "4b8f3bd0-76b3-4c55-83c6-8b63efdde758",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "filePath": "C:\\Users\\giorgio.testa\\Desktop\\Mockoon\\sites\\GenericAPI\\GenericAPI.File.txt",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "ca982e64-7dbe-433a-b6ac-ab633bbb9b69",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5af3a52c-69bb-4ff2-9e54-3e0d7e3dfb28",
+      "documentation": "Ritorna esattamente ciò che è sato ricevuto",
+      "method": "post",
+      "endpoint": "basic-auth/post-mirror",
+      "responses": [
+        {
+          "uuid": "5bbddf59-31c3-4621-873a-798ded96b10a",
+          "body": "{{body}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "23663722-b881-4c33-b893-1b9c8258572f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "ed2b6722-d39c-48f3-9143-1b5ca4d63a85",
+      "documentation": "Ritorna esattamente ciò che è stato ricevuto",
+      "method": "put",
+      "endpoint": "basic-auth/put-mirror",
+      "responses": [
+        {
+          "uuid": "e6c96255-1ca9-4cd9-9b68-b432760dda1a",
+          "body": "{{body}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "c77d4aa8-0b6b-4416-a41e-a4efe9675fae",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "41ee5617-bbf4-4c13-8adf-b184ee83988b",
+      "documentation": "Dato una richiesta put con le seugenti chiavi: 1 ; 2 ; 3 ritorna il valore contenuto in 1",
+      "method": "put",
+      "endpoint": "basic-auth/put-parameters-mirror",
+      "responses": [
+        {
+          "uuid": "442c2c6a-0117-44cb-a8f8-a2d6a35673e7",
+          "body": "{\n  \"success\":\"true\",\n  \"data\":\"{{body '1'}}\",\n  \"message\": \"ok\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "e17827b2-1121-4e73-a51f-0e5faa3da26a",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+2022/11/03-16:54:24.829 2dbc Reusing MANIFEST C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\IndexedDB\file__0.indexeddb.leveldb/MANIFEST-000001
+2022/11/03-16:54:24.830 2dbc Recovering log #23
+2022/11/03-16:54:24.830 2dbc Reusing old log C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\IndexedDB\file__0.indexeddb.leveldb/000023.log 
+2022/11/03-16:54:24.830 2dbc Delete type=2 #21
+2022/11/03-16:54:24.884 574c Level-0 table #28: started
+2022/11/03-16:54:24.885 574c Level-0 table #28: 9823 bytes OK
+2022/11/03-16:54:24.886 574c Delete type=0 #23
+2022/11/03-16:54:24.886 574c Manual compaction at level-0 from '\x00\x0e\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0f\x00\x00\x00' @ 0 : 0; will stop at '\x00\x0e\x00\x00\x05' @ 1049 : 1
+2022/11/03-16:54:24.887 574c Compacting 1@0 + 1@1 files
+2022/11/03-16:54:24.888 574c Generated table #29@0: 92 keys, 3048 bytes
+2022/11/03-16:54:24.888 574c Compacted 1@0 + 1@1 files => 3048 bytes
+2022/11/03-16:54:24.888 574c compacted to: files[ 0 1 1 0 0 0 0 ]
+2022/11/03-16:54:24.889 574c Delete type=2 #28
+2022/11/03-16:54:24.889 574c Manual compaction at level-0 from '\x00\x0e\x00\x00\x05' @ 1049 : 1 .. '\x00\x0f\x00\x00\x00' @ 0 : 0; will stop at (end)
+2022/11/03-16:54:25.050 68b0 Level-0 table #31: started
+2022/11/03-16:54:25.051 68b0 Level-0 table #31: 576 bytes OK
+2022/11/03-16:54:25.051 68b0 Delete type=2 #25
+2022/11/03-16:54:25.052 68b0 Delete type=0 #27
+2022/11/03-16:54:25.052 68b0 Manual compaction at level-0 from '\x00\x0f\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x10\x00\x00\x00' @ 0 : 0; will stop at '\x00\x0f\x00\x00\x05' @ 1066 : 1
+2022/11/03-16:54:25.052 68b0 Compacting 1@0 + 1@1 files
+2022/11/03-16:54:25.053 68b0 Generated table #32@0: 92 keys, 3045 bytes
+2022/11/03-16:54:25.053 68b0 Compacted 1@0 + 1@1 files => 3045 bytes
+2022/11/03-16:54:25.054 68b0 compacted to: files[ 0 1 1 0 0 0 0 ]
+2022/11/03-16:54:25.054 68b0 Delete type=2 #31
+2022/11/03-16:54:25.054 68b0 Manual compaction at level-0 from '\x00\x0f\x00\x00\x05' @ 1066 : 1 .. '\x00\x10\x00\x00\x00' @ 0 : 0; will stop at (end)

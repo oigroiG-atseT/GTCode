@@ -22,4 +22,9 @@
     <ProjectReference Include="..\GTCode.Utils\GTCode.Utils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Documentation\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
 </Project>

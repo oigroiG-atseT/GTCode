@@ -1,0 +1,15 @@
+2022/11/03-16:43:14.309 353c Reusing MANIFEST C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\IndexedDB\file__0.indexeddb.leveldb/MANIFEST-000001
+2022/11/03-16:43:14.309 353c Recovering log #19
+2022/11/03-16:43:14.310 353c Reusing old log C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\IndexedDB\file__0.indexeddb.leveldb/000019.log 
+2022/11/03-16:43:14.310 353c Delete type=2 #18
+2022/11/03-16:43:14.342 39b0 Level-0 table #24: started
+2022/11/03-16:43:14.344 39b0 Level-0 table #24: 7001 bytes OK
+2022/11/03-16:43:14.345 39b0 Delete type=0 #19
+2022/11/03-16:43:14.345 a48 Manual compaction at level-0 from '\x00\x0c\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0d\x00\x00\x00' @ 0 : 0; will stop at '\x00\x0c\x00\x00\x05' @ 831 : 1
+2022/11/03-16:43:14.345 a48 Compacting 1@0 + 1@1 files
+2022/11/03-16:43:14.346 a48 Generated table #25@0: 80 keys, 3321 bytes
+2022/11/03-16:43:14.346 a48 Compacted 1@0 + 1@1 files => 3321 bytes
+2022/11/03-16:43:14.347 a48 compacted to: files[ 0 1 1 0 0 0 0 ]
+2022/11/03-16:43:14.347 a48 Delete type=2 #24
+2022/11/03-16:43:14.347 a48 Manual compaction at level-0 from '\x00\x0c\x00\x00\x05' @ 831 : 1 .. '\x00\x0d\x00\x00\x00' @ 0 : 0; will stop at (end)
+2022/11/03-16:43:14.511 353c Manual compaction at level-0 from '\x00\x0d\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0e\x00\x00\x00' @ 0 : 0; will stop at (end)

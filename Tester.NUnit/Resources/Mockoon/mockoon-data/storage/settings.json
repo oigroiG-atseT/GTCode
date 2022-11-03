@@ -1,0 +1,22 @@
+{
+  "welcomeShown": true,
+  "bannerDismissed": [],
+  "logSizeLimit": 10000,
+  "maxLogsPerEnvironment": 50,
+  "truncateRouteName": true,
+  "environmentMenuSize": 167,
+  "routeMenuSize": 252,
+  "logsMenuSize": 360,
+  "fakerLocale": "en",
+  "fakerSeed": null,
+  "lastChangelog": "1.20.0",
+  "environments": [
+    {
+      "uuid": "d36af324-0b51-4110-b539-16aa11d9fdaa",
+      "path": "C:\\Users\\giorgio.testa\\Desktop\\Mockoon\\sites\\GenericAPI\\Mockoon-GTCode.json"
+    }
+  ],
+  "enableTelemetry": true,
+  "storagePrettyPrint": true,
+  "fileWatcherEnabled": "disabled"
+}
