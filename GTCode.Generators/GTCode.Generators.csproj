@@ -9,7 +9,8 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <Title>GTCode.Generators</Title>
     <Authors>Giorgio Testa</Authors>
-    <Description>-</Description>
+    <Version>1.1.0</Version>
+    <Description>Attributi per la generazione di codice da iniettare nelle classi al momento della compilazione.</Description>
   </PropertyGroup>
   
   <ItemGroup>
