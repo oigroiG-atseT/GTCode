@@ -10,6 +10,8 @@
     <Title>GTCode.Generators</Title>
     <Authors>Giorgio Testa</Authors>
     <Version>1.1.0</Version>
+    <PackageId>GTCode.Generators</PackageId>
+    <RepositoryUrl>https://github.com/oigroiG-atseT/GTCode</RepositoryUrl>
     <Description>Attributi per la generazione di codice da iniettare nelle classi al momento della compilazione.</Description>
   </PropertyGroup>
   
@@ -23,7 +25,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    </PackageReference>    
   </ItemGroup>
   
 </Project>

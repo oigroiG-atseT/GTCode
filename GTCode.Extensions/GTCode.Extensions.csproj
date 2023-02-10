@@ -8,6 +8,8 @@
     <Title>GTCode.Extensions</Title>
     <Authors>Giorgio Testa</Authors>
     <Version>1.0.0</Version>
+    <PackageId>GTCode.Extensions</PackageId>
+    <RepositoryUrl>https://github.com/oigroiG-atseT/GTCode</RepositoryUrl>
     <Description>Estensioni per classi .net Core.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>

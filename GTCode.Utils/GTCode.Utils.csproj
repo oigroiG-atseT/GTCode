@@ -8,6 +8,8 @@
     <Title>GTCode.Utils</Title>
     <Authors>Giorgio Testa</Authors>
     <Version>1.0.0</Version>
+    <PackageId>GTCode.Utils</PackageId>
+    <RepositoryUrl>https://github.com/oigroiG-atseT/GTCode</RepositoryUrl>
     <Description>Classi di utiliy originali o derivati dal porting di codice esistente in Java.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
