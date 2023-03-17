@@ -165,6 +165,5 @@ namespace Tester.NUnit.GTCode.Service.Api.ApiClient
             Assert.ThrowsAsync<HttpRequestException>(async () => { await _apiClient.PutCallAPIAsync<SingleResponse<string>>(url, dictionary, UNAUTH_TOKEN); });                        
         }
 
-
     }
 }

@@ -150,7 +150,8 @@ namespace GTCode.Services.Api.ApiClient
             if (!Regex.Match(authenticationToken, "(.*):(.*)").Success) throw new ArgumentException();
             if (!_authCache.Any(auth => auth.Key.Equals(authenticationToken)))
             {
-                _authCache.Add(authenticationToken, new AuthenticationHeaderValue("Basic", authenticationToken));                
+                string encodedToken = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(authenticationToken));
+                _authCache.Add(authenticationToken, new AuthenticationHeaderValue("Basic", encodedToken));                
             }
             _httpClient.DefaultRequestHeaders.Authorization = _authCache[authenticationToken];
         }
