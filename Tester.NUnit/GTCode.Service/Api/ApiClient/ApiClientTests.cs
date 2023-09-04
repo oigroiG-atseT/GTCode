@@ -101,5 +101,18 @@ namespace Tester.NUnit.GTCode.Service.Api.ApiClient
             Assert.That(result.Data, Is.EqualTo("uno"));
         }
 
+        [Category("Api")]
+        [Category("GET")]
+        [Order(5), Test(Description = "Verifica la corretta esecuzione di PutCallAPIAsync(url, Dictionary)")]
+        public async Task Test005_DownloadFileAsync()
+        {
+            string url = $"http://10.10.94.36:8082/texit-report/texit/reportProduttivita/getReportProduttivitaSogei?dataInizio=2023-08-01&dataFine=2023-08-31";
+
+
+            await _apiClient.DownloadFileAsync(url, "C:\\Users\\giorgio.testa\\Desktop");
+            //File.Create("C:\\Users\\giorgio.testa\\Desktop\\AAAAAAAAAAAAAAAAAA.png", result.ReadByte());
+            
+        }
+
     }
 }

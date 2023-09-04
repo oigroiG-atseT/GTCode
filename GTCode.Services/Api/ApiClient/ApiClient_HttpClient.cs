@@ -16,6 +16,7 @@ namespace GTCode.Services.Api.ApiClient
 
         private readonly HttpClient _httpClient;
         private readonly Dictionary<string, AuthenticationHeaderValue?> _authCache = new();
+        private readonly Func<string, string> _basicAuthEncodingFunction;
 
         /// <summary>
         /// Implementazione tramite HttpClient di IApiClient.
@@ -24,8 +25,17 @@ namespace GTCode.Services.Api.ApiClient
         {
             _httpClient = httpClient;
             _authCache.Add("default", httpClient.DefaultRequestHeaders.Authorization);
+            _basicAuthEncodingFunction = (authenticationToken) => Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(authenticationToken));
         }
-        
+
+        /// <summary>
+        /// Implementazione tramite HttpClient di IApiClient.
+        /// </summary>
+        public ApiClient_HttpClient(HttpClient httpClient, Func<string, string> basicAuthEncodingFunction) : this(httpClient)
+        {
+           _basicAuthEncodingFunction = basicAuthEncodingFunction;
+        }
+
         public async Task<TModel> PostCallAPIAsync<TModel>(string url, object? jsonObject = null, string? authenticationToken = null) where TModel : GenericResponse
         {
             try
@@ -143,6 +153,26 @@ namespace GTCode.Services.Api.ApiClient
             finally { this.ResetAuthenticationCall(authenticationToken); }
         }
 
+        public async Task DownloadFileAsync(string url, string directory, string? authenticationToken = null)
+        {            
+            try
+            {
+                this.BaseAuthenticateCall(authenticationToken);
+
+                var message = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
+                var response = await _httpClient.SendAsync(message, HttpCompletionOption.ResponseHeadersRead);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var fileName = response.Content.Headers.ContentDisposition.FileName;
+                    using var stream = await response.Content.ReadAsStreamAsync();
+                    using var fileStream = File.Create(@$"{directory}\{fileName.Replace("\"", string.Empty)}");
+                    await stream.CopyToAsync(fileStream);
+                }
+            }            
+            finally { this.ResetAuthenticationCall(authenticationToken); }
+        }
+
         #region METHODS        
         private void BaseAuthenticateCall(string? authenticationToken)
         {
@@ -150,7 +180,7 @@ namespace GTCode.Services.Api.ApiClient
             if (!Regex.Match(authenticationToken, "(.*):(.*)").Success) throw new ArgumentException();
             if (!_authCache.Any(auth => auth.Key.Equals(authenticationToken)))
             {
-                string encodedToken = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(authenticationToken));
+                string encodedToken = _basicAuthEncodingFunction.Invoke(authenticationToken);
                 _authCache.Add(authenticationToken, new AuthenticationHeaderValue("Basic", encodedToken));                
             }
             _httpClient.DefaultRequestHeaders.Authorization = _authCache[authenticationToken];
@@ -161,6 +191,7 @@ namespace GTCode.Services.Api.ApiClient
             if (authenticationToken is null) return;            
             _httpClient.DefaultRequestHeaders.Authorization = _authCache["default"];
         }
+
         #endregion METHODS
 
     }

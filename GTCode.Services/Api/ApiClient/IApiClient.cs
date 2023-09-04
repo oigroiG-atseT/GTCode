@@ -86,5 +86,7 @@ namespace GTCode.Services.Api.ApiClient
         /// <returns>byte array fornito nella risposta</returns>
         Task<byte[]> GetCallByteArrayAPIAsync(string url, string? authenticationToken = null);
 
+        Task DownloadFileAsync(string url, string directory, string? authenticationToken = null);
+
     }
 }

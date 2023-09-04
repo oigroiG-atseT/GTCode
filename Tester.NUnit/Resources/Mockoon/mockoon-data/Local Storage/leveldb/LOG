@@ -1,3 +1,2 @@
-2022/11/03-16:54:24.534 1f88 Reusing MANIFEST C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Local Storage\leveldb/MANIFEST-000001
-2022/11/03-16:54:24.535 1f88 Recovering log #3
-2022/11/03-16:54:24.535 1f88 Reusing old log C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Local Storage\leveldb/000003.log 
+2023/09/04-12:52:27.585 985c Creating DB C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Local Storage\leveldb since it was missing.
+2023/09/04-12:52:27.590 985c Reusing MANIFEST C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Local Storage\leveldb/MANIFEST-000001
