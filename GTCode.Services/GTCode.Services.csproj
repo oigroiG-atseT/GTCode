@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <Title>GTCode.Services</Title>
     <Authors>Giorgio Testa</Authors>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <PackageId>GTCode.Services</PackageId>
     <RepositoryUrl>https://github.com/oigroiG-atseT/GTCode</RepositoryUrl>
     <Description>Servizi e oggetti ad essi relativi.</Description>

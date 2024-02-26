@@ -13,8 +13,13 @@ namespace GTCode.Services.Api.ApiClient
     /// </summary>
     public class ApiClient_HttpClient : IApiClient
     {
-
-        private readonly HttpClient _httpClient;
+        /// <summary>
+        /// HttpClient utilizzato per eseguire le richieste
+        /// </summary>
+        protected readonly HttpClient _httpClient;
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly Dictionary<string, AuthenticationHeaderValue?> _authCache = new();
         private readonly Func<string, string> _basicAuthEncodingFunction;
 
@@ -91,6 +96,33 @@ namespace GTCode.Services.Api.ApiClient
             } finally { this.ResetAuthenticationCall(authenticationToken); }                       
         }
 
+        public async Task<TModel> UploadAsync<TModel>(string url, List<Tuple<string, string>> fileList, Dictionary<string, string> item, string? authenticationToken = null) where TModel : GenericResponse
+        {
+            try
+            {
+                using var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture));
+                
+                foreach (var tuple in fileList)
+                {
+                    var file = new FileInfo(tuple.Item2);
+                    content.Add(new StreamContent(new MemoryStream(File.ReadAllBytes(file.FullName))), tuple.Item1, file.Name);
+                }
+                                
+                foreach (string key in item.Keys)
+                {
+                    content.Add(new StringContent(item[key]), key);
+                }
+
+                this.BaseAuthenticateCall(authenticationToken);
+                using var responseMessage = await _httpClient.PostAsync(url, content);
+                if (responseMessage is null) throw new InternalException(ExceptionsDefinition.API_NULL_BODY);
+
+                var jsonString = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TModel>(jsonString);
+            }
+            finally { this.ResetAuthenticationCall(authenticationToken); }
+        }
+
         public async Task<TModel> PutCallAPIAsync<TModel>(string url, object? jsonObject = null, string? authenticationToken = null) where TModel : GenericResponse
         {
             try
@@ -159,7 +191,7 @@ namespace GTCode.Services.Api.ApiClient
             {
                 this.BaseAuthenticateCall(authenticationToken);
 
-                var message = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, url);
+                var message = new HttpRequestMessage(HttpMethod.Get, url);
                 var response = await _httpClient.SendAsync(message, HttpCompletionOption.ResponseHeadersRead);
 
                 if (response.IsSuccessStatusCode)
@@ -173,8 +205,14 @@ namespace GTCode.Services.Api.ApiClient
             finally { this.ResetAuthenticationCall(authenticationToken); }
         }
 
-        #region METHODS        
-        private void BaseAuthenticateCall(string? authenticationToken)
+        #region METHODS   
+
+        /// <summary>
+        /// Autentica la chiamata verso il server utilizzando il token fornito.
+        /// </summary>
+        /// <param name="authenticationToken">token di autenticazione della richiesta, nel formato username:password</param>
+        /// <exception cref="ArgumentException">se il token non rispetta i formalismi</exception>
+        protected void BaseAuthenticateCall(string? authenticationToken)
         {
             if (authenticationToken is null) return;            
             if (!Regex.Match(authenticationToken, "(.*):(.*)").Success) throw new ArgumentException();
@@ -186,7 +224,11 @@ namespace GTCode.Services.Api.ApiClient
             _httpClient.DefaultRequestHeaders.Authorization = _authCache[authenticationToken];
         }
 
-        private void ResetAuthenticationCall(string? authenticationToken)
+        /// <summary>
+        /// Ripristina gli headers dell'httpClient.
+        /// </summary>
+        /// <param name="authenticationToken">token di autenticazione</param>
+        protected void ResetAuthenticationCall(string? authenticationToken)
         {
             if (authenticationToken is null) return;            
             _httpClient.DefaultRequestHeaders.Authorization = _authCache["default"];

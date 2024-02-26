@@ -46,6 +46,18 @@ namespace GTCode.Services.Api.ApiClient
         Task<TModel> UploadAsync<TModel>(string url, byte[] file, string fileName, string fileToken, Dictionary<string, string> item, string? authenticationToken = null) where TModel : GenericResponse;
 
         /// <summary>
+        /// Carica sul server i file indicati all'indirizzo fornito in POST.
+        /// </summary>
+        /// <typeparam name="TModel">oggetto in cui contenere la risposta</typeparam>
+        /// <param name="url">indirizzo a cui effetturare l'upload</param>
+        /// <param name="fileList">dictionary avente per 'key' il nome del parametro della requestest e per 'value' percorso del file da spedire</param>                
+        /// <param name="item">oggetto da spedire</param>
+        /// <param name="authenticationToken">[optional] token di autenticazione nel formato "username:password"</param>
+        /// <exception cref="InternalException">se il corpo della risposta è NULL.</exception>
+        /// <returns>oggetto definito in TModel.</returns>
+        Task<TModel> UploadAsync<TModel>(string url, List<Tuple<string, string>> fileList, Dictionary<string, string> item, string? authenticationToken = null) where TModel : GenericResponse;
+
+        /// <summary>
         /// Esegue una REQUEST-PUT all'indirizzo fornito.
         /// </summary>
         /// <typeparam name="TModel">oggetto in cui contenere la risposta</typeparam>
@@ -86,6 +98,15 @@ namespace GTCode.Services.Api.ApiClient
         /// <returns>byte array fornito nella risposta</returns>
         Task<byte[]> GetCallByteArrayAPIAsync(string url, string? authenticationToken = null);
 
+        /// <summary>
+        /// Esegue una REQUEST-GET all'indirizzo fornito restituente un byte array salvandolo nel percorso indicato.
+        /// Il nome del file è deciso dal server.
+        /// </summary>
+        /// <param name="url">indirizzo a cui effettuare la richiesta</param>
+        /// <param name="directory">percorso nel quale salvare il file</param>
+        /// <param name="authenticationToken">[optional] token di autenticazione nel formato "username:password"</param>
+        /// <exception cref="InternalException">se il corpo della risposta è NULL</exception>
+        /// <returns>byte array fornito nella risposta</returns>
         Task DownloadFileAsync(string url, string directory, string? authenticationToken = null);
 
     }
