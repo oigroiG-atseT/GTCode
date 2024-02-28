@@ -3,6 +3,7 @@ using GTCode.Services.Exceptions;
 using Newtonsoft.Json;
 using System.Globalization;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -190,7 +191,7 @@ namespace GTCode.Services.Api.ApiClient
             try
             {
                 this.BaseAuthenticateCall(authenticationToken);
-
+                
                 var message = new HttpRequestMessage(HttpMethod.Get, url);
                 var response = await _httpClient.SendAsync(message, HttpCompletionOption.ResponseHeadersRead);
 
@@ -202,6 +203,28 @@ namespace GTCode.Services.Api.ApiClient
                     await stream.CopyToAsync(fileStream);
                 }
             }            
+            finally { this.ResetAuthenticationCall(authenticationToken); }
+        }
+
+        public async Task DownloadFileAsync(string url, string directory, object? jsonObject = null, string? authenticationToken = null)
+        {
+            try
+            {
+                this.BaseAuthenticateCall(authenticationToken);
+
+                var message = new HttpRequestMessage(HttpMethod.Post, url);
+                if(jsonObject != null) 
+                    message.Content = new StringContent(JsonConvert.SerializeObject(jsonObject), Encoding.UTF8, "application/json");
+                var response = await _httpClient.SendAsync(message, HttpCompletionOption.ResponseHeadersRead);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var fileName = response.Content.Headers.ContentDisposition.FileName;
+                    using var stream = await response.Content.ReadAsStreamAsync();
+                    using var fileStream = File.Create(@$"{directory}\{fileName.Replace("\"", string.Empty)}");
+                    await stream.CopyToAsync(fileStream);
+                }
+            }
             finally { this.ResetAuthenticationCall(authenticationToken); }
         }
 

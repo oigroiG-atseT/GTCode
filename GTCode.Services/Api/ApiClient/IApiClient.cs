@@ -109,5 +109,17 @@ namespace GTCode.Services.Api.ApiClient
         /// <returns>byte array fornito nella risposta</returns>
         Task DownloadFileAsync(string url, string directory, string? authenticationToken = null);
 
+        /// <summary>
+        /// Esegue una REQUEST-POST all'indirizzo fornito restituente un byte array salvandolo nel percorso indicato.
+        /// Il nome del file è deciso dal server.
+        /// </summary>
+        /// <param name="url">indirizzo a cui effettuare la richiesta</param>
+        /// <param name="directory">percorso nel quale salvare il file</param>
+        /// <param name="jsonObject">[optional] oggetto da inserire nel body della richiesta</param>
+        /// <param name="authenticationToken">[optional] token di autenticazione nel formato "username:password"</param>
+        /// <exception cref="InternalException">se il corpo della risposta è NULL</exception>
+        /// <returns>byte array fornito nella risposta</returns>
+        Task DownloadFileAsync(string url, string directory, object? jsonObject = null, string? authenticationToken = null);
+
     }
 }
