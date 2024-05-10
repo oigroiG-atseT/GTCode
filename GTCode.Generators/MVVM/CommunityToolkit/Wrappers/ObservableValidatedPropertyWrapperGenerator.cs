@@ -103,11 +103,20 @@ namespace {namespaceName}
         public {fieldType} {propertyName} 
         {{
             get => {coreName}.{coreReference};    
-            set {{
-                {fieldName} = value;
-                SetProperty({coreName}.{coreReference}, value, {coreName}, (i, v) => i.{coreReference} = v, true);                 
+            set {{                
+                On{propertyName}Changing(value);
+                On{propertyName}Changing(default, value);
+                {fieldName} = value;                
+                On{propertyName}Changed(value);
+                On{propertyName}Changed(default, value);
+                SetProperty({coreName}.{coreReference}, value, {coreName}, (i, v) => i.{coreReference} = v);                                 
             }}
         }}
+        partial void On{propertyName}Changing({fieldType} value);                
+        partial void On{propertyName}Changing({fieldType}? oldValue, {fieldType} newValue);        
+        partial void On{propertyName}Changed({fieldType} value);        
+        partial void On{propertyName}Changed({fieldType}? oldValue, {fieldType} newValue);
+
         ");
 
         }
