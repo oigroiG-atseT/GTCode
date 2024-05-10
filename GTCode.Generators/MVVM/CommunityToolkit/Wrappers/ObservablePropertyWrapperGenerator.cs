@@ -105,9 +105,9 @@ namespace {namespaceName}
             }}
         }}
         partial void On{propertyName}Changing({fieldType} value);                
-        partial void On{propertyName}Changing({fieldType}? oldValue, {fieldType} newValue);        
+        partial void On{propertyName}Changing({fieldType} oldValue, {fieldType} newValue);        
         partial void On{propertyName}Changed({fieldType} value);        
-        partial void On{propertyName}Changed({fieldType}? oldValue, {fieldType} newValue);
+        partial void On{propertyName}Changed({fieldType} oldValue, {fieldType} newValue);
 
         ");         
         }
