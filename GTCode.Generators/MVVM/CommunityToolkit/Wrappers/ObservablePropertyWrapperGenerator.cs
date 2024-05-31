@@ -99,9 +99,9 @@ namespace {namespaceName}
                 On{propertyName}Changing(value);
                 On{propertyName}Changing(default, value);
                 {fieldName} = value;                
-                On{propertyName}Changed(value);
-                On{propertyName}Changed(default, value);
                 SetProperty({coreName}.{coreReference}, value, {coreName}, (i, v) => i.{coreReference} = v);
+                On{propertyName}Changed(value);
+                On{propertyName}Changed(default, value);                
             }}
         }}
         partial void On{propertyName}Changing({fieldType} value);                
