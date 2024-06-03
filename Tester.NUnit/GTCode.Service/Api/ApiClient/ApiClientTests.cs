@@ -109,7 +109,7 @@ namespace Tester.NUnit.GTCode.Service.Api.ApiClient
             string url = $"http://10.10.94.36:8082/texit-report/texit/reportProduttivita/getReportProduttivitaSogei?dataInizio=2023-08-01&dataFine=2023-08-31";
 
 
-            await _apiClient.DownloadFileAsync(url, "C:\\Users\\giorgio.testa\\Desktop");
+            //await _apiClient.DownloadFileAsync(url, "C:\\Users\\giorgio.testa\\Desktop");
             //File.Create("C:\\Users\\giorgio.testa\\Desktop\\AAAAAAAAAAAAAAAAAA.png", result.ReadByte());
             
         }
