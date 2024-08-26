@@ -165,5 +165,24 @@ namespace Tester.NUnit.GTCode.Service.Api.ApiClient
             Assert.ThrowsAsync<HttpRequestException>(async () => { await _apiClient.PutCallAPIAsync<SingleResponse<string>>(url, dictionary, UNAUTH_TOKEN); });                        
         }
 
+        [Category("Api")]
+        [Category("POST")]
+        [Order(10), Test(Description = "Verifica la corretta esecuzione di DeleteCallAPIAsync")]
+        public void Test010_DeleteCallAPIAsync()
+        {
+            string url = $"{API_BASE_URL}/delete-mirror";
+            var singleWrapper = new SingleResponse<string>()
+            {
+                Success = false,
+                Message = "body restituito",
+                Data = "PostCallAPIAsync"
+            };
+
+            var result = _apiClient.DeleteCallAPIAsync<SingleResponse<string>>(url, singleWrapper, AUTH_TOKEN).Result;
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.ToString(), Is.EqualTo(singleWrapper.ToString()));
+        }
+
     }
 }

@@ -1,2 +1,3 @@
-2023/09/04-12:52:28.513 8ccc Creating DB C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Session Storage since it was missing.
-2023/09/04-12:52:28.517 8ccc Reusing MANIFEST C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Session Storage/MANIFEST-000001
+2024/08/26-15:52:27.889 4db0 Reusing MANIFEST C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Session Storage/MANIFEST-000001
+2024/08/26-15:52:27.889 4db0 Recovering log #3
+2024/08/26-15:52:27.889 4db0 Reusing old log C:\Users\giorgio.testa\source\repos\oigroiG-atseT\GTCode\Tester.NUnit\Resources\Mockoon\mockoon-data\Session Storage/000003.log 

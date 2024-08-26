@@ -1,10 +1,5 @@
 ﻿using GTCode.Services.Api.ApiClient;
 using GTCode.Services.Api.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tester.NUnit.GTCode.Service.Api.ApiClient
 {
@@ -105,13 +100,28 @@ namespace Tester.NUnit.GTCode.Service.Api.ApiClient
         [Category("GET")]
         [Order(5), Test(Description = "Verifica la corretta esecuzione di PutCallAPIAsync(url, Dictionary)")]
         public async Task Test005_DownloadFileAsync()
-        {
-            string url = $"http://10.10.94.36:8082/texit-report/texit/reportProduttivita/getReportProduttivitaSogei?dataInizio=2023-08-01&dataFine=2023-08-31";
-
-
+        {         
             //await _apiClient.DownloadFileAsync(url, "C:\\Users\\giorgio.testa\\Desktop");
-            //File.Create("C:\\Users\\giorgio.testa\\Desktop\\AAAAAAAAAAAAAAAAAA.png", result.ReadByte());
-            
+            //File.Create("C:\\Users\\giorgio.testa\\Desktop\\AAAAAAAAAAAAAAAAAA.png", result.ReadByte());            
+        }
+
+        [Category("Api")]
+        [Category("DELETE")]
+        [Order(6), Test(Description = "Verifica la corretta esecuzione di DeleteCallAPIAsync(url, object)")]
+        public void Test006_DeleteCallAPIAsync_dictionary()
+        {
+            string url = $"{API_BASE_URL}/delete-mirror";
+            var singleWrapper = new SingleResponse<string>()
+            {
+                Success = false,
+                Message = "body restituito",
+                Data = "DeleteCallAPIAsync"
+            };
+
+            var result = _apiClient.DeleteCallAPIAsync<SingleResponse<string>>(url, singleWrapper).Result;
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.ToString(), Is.EqualTo(singleWrapper.ToString()));
         }
 
     }

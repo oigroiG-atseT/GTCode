@@ -93,6 +93,36 @@
       "responseMode": null
     },
     {
+      "uuid": "5e9e68a7-3cbf-4720-995c-0360c76cd7a3",
+      "documentation": "Ritorna esattamente ciò che è sato ricevuto",
+      "method": "delete",
+      "endpoint": "delete-mirror",
+      "responses": [
+        {
+          "uuid": "eaeed56f-e3e9-4582-ac19-7462af6feb24",
+          "body": "{{body}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
       "uuid": "7da72230-4bd4-4002-9adf-5648d9e5506a",
       "documentation": "Ritorna esattamente ciò che è stato ricevuto",
       "method": "put",
@@ -300,6 +330,67 @@
         },
         {
           "uuid": "23663722-b881-4c33-b893-1b9c8258572f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic gtcode:gtcode",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "31bbf074-2cfa-43c1-8033-f33513de1cb2",
+      "documentation": "Ritorna esattamente ciò che è sato ricevuto",
+      "method": "delete",
+      "endpoint": "basic-auth/delete-mirror",
+      "responses": [
+        {
+          "uuid": "885826a5-a8cc-44ff-8659-4f644013c872",
+          "body": "{{body}}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Basic Z3Rjb2RlOmd0Y29kZQ==",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "98e2b1d6-24bd-4d34-8dfb-e1e4f7ab4fd4",
           "body": "{}",
           "latency": 0,
           "statusCode": 401,

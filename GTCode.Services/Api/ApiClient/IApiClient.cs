@@ -99,6 +99,16 @@ namespace GTCode.Services.Api.ApiClient
         Task<byte[]> GetCallByteArrayAPIAsync(string url, string? authenticationToken = null);
 
         /// <summary>
+        /// Esegue una REQUEST-DELETE all'indirizzo fornito.
+        /// </summary>
+        /// <param name="url">inidirizzo a cui effetturare la richiesta</param>
+        /// <param name="jsonObject">[optional] oggetto da inserire nel body della richiesta</param>
+        /// <param name="authenticationToken">[optional] token di autenticazione nel formato "username:password"</param>
+        /// <exception cref="InternalException">se il corpo della risposta è NULL</exception>
+        /// <returns>oggetto definito in TModel</returns>
+        Task<TModel> DeleteCallAPIAsync<TModel>(string url, object? jsonObject = null, string? authenticationToken = null) where TModel : GenericResponse;
+
+        /// <summary>
         /// Esegue una REQUEST-GET all'indirizzo fornito restituente un byte array salvandolo nel percorso indicato.
         /// Il nome del file è deciso dal server.
         /// </summary>

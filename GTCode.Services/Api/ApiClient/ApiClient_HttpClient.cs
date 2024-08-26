@@ -186,6 +186,26 @@ namespace GTCode.Services.Api.ApiClient
             finally { this.ResetAuthenticationCall(authenticationToken); }
         }
 
+        public async Task<TModel> DeleteCallAPIAsync<TModel>(string url, object? jsonObject = null, string? authenticationToken = null) where TModel : GenericResponse
+        {
+            try
+            {
+                var content = new StringContent(String.Empty);
+                if (jsonObject != null) content = new StringContent(JsonConvert.SerializeObject(jsonObject), Encoding.UTF8, "application/json");
+
+                this.BaseAuthenticateCall(authenticationToken);
+                using var request = new HttpRequestMessage(HttpMethod.Delete, url);
+                request.Content = content;
+                using var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                if (response is null) throw new InternalException(ExceptionsDefinition.API_NULL_BODY);
+
+                var jsonString = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TModel>(jsonString);
+            }
+            finally { this.ResetAuthenticationCall(authenticationToken); }
+        }
+
         public async Task DownloadFileAsync(string url, string directory, string? authenticationToken = null)
         {            
             try
